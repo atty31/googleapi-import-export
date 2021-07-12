@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="atma" translate="label" sortOrder="10">
+            <label>Atma</label>
+        </tab>
+        <section id="google_client" translate="label" sortOrder="200" showInDefault="1" showInWebsite="0" showInStore="0">
+            <class>separator-top</class>
+            <label>Product Export</label>
+            <tab>atma</tab>
+            <resource>Atma_Products::atma_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>General Configuration</label>
+                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Module Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>atma/google_client/enable</config_path>
+                    <comment>Enable/Disable module.</comment>
+                </field>
+                <field id="google_api_details" translate="label" type="textarea" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Google Api Details</label>
+                    <comment>Add the json file content, downloaded from the google console</comment>
+                    <config_path>atma/google_client/google_api_details</config_path>
+                </field>
+                <field id="spreadsheet_id" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>SpreadSheet Id</label>
+                    <comment>SpreadSheet Id.</comment>
+                    <config_path>atma/google_client/spreadsheet_id</config_path>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

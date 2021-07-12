@@ -1,0 +1,22 @@
+{
+    "name": "atma/module-products",
+    "description": "",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Attila Naghi",
+            "email": "atma.business2020@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Atma\\Products\\": ""
+        }
+    }
+}
