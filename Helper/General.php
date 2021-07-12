@@ -11,6 +11,8 @@ class General extends AbstractHelper
     CONST ENABLE_MODULE = 'atma/google_client/enable';
     CONST GOOGLE_API = 'atma/google_client/google_api_details';
     CONST GOOGLE_SPREADSHEET_ID = 'atma/google_client/spreadsheet_id';
+    CONST GOOGLE_EXPORT_SHEET = 'atma/google_client/export_sheet';
+    CONST GOOGLE_IMPORT_SHEET = 'atma/google_client/import_sheet';
 
     /**
      * @return bool
@@ -34,5 +36,21 @@ class General extends AbstractHelper
     public function getSpreadSheetId() : string
     {
         return trim($this->scopeConfig->getValue(self::GOOGLE_SPREADSHEET_ID, ScopeInterface::SCOPE_STORE));
+    }
+
+    /**
+     * @return string
+     */
+    public function getExportSheetName() : string
+    {
+        return trim($this->scopeConfig->getValue(self::GOOGLE_EXPORT_SHEET, ScopeInterface::SCOPE_STORE));
+    }
+
+    /**
+     * @return string
+     */
+    public function getImportSheetName() : string
+    {
+        return trim($this->scopeConfig->getValue(self::GOOGLE_IMPORT_SHEET, ScopeInterface::SCOPE_STORE));
     }
 }

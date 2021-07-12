@@ -21,11 +21,25 @@
                     <label>Google Api Details</label>
                     <comment>Add the json file content, downloaded from the google console</comment>
                     <config_path>atma/google_client/google_api_details</config_path>
+                    <validate>required-entry</validate>
                 </field>
                 <field id="spreadsheet_id" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
                     <label>SpreadSheet Id</label>
                     <comment>SpreadSheet Id.</comment>
                     <config_path>atma/google_client/spreadsheet_id</config_path>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="export_sheet" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Export sheet name</label>
+                    <comment>Export sheet name.</comment>
+                    <config_path>atma/google_client/export_sheet</config_path>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="import_sheet" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Import sheet name</label>
+                    <comment>Import sheet name.</comment>
+                    <config_path>atma/google_client/import_sheet</config_path>
+                    <validate>required-entry</validate>
                 </field>
             </group>
         </section>

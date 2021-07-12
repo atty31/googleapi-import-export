@@ -7,6 +7,7 @@ use Atma\Products\Helper\General as GeneralHelper;
 use Google\Model;
 use Google\Service\Sheets;
 use Google_Client;
+use Google_Service_Sheets;
 use Google_Service_Sheets_Spreadsheet;
 use Exception;
 use Google_Service_Sheets_ValueRange;
@@ -32,7 +33,7 @@ class GoogleClient
      */
     public function __construct(
         GeneralHelper $generalHelper,
-        LoggerInterface $logger,
+        LoggerInterface $logger
     ){
         $this->generalHelper = $generalHelper;
         $this->logger = $logger;
@@ -44,7 +45,6 @@ class GoogleClient
      */
     public function getGoogleClient()
     {
-        $spreadsheetId = $this->generalHelper->getSpreadSheetId();
         $client = new Google_Client();
 
         $client->setApplicationName('Google Sheets and PHP');
@@ -54,14 +54,18 @@ class GoogleClient
         $client->setScopes([Google_Service_Sheets::SPREADSHEETS]);
         $client->setAccessType('offline');
 
-        return $client;
+        return new Google_Service_Sheets($client);
 
     }
-    public function readSpreadSheet(Google_Client $client)
+
+    /**
+     * @param $service
+     * @return mixed
+     */
+    public function readSpreadSheet($service)
     {
-        $service = new Google_Service_Sheets($client);
         try {
-            $response = $service->spreadsheets_values->get($spreadsheetId, 'Import!A:Z');
+            $response = $service->spreadsheets_values->get($this->generalHelper->getSpreadSheetId(), $this->generalHelper->getImportSheetName().'!A:Z');
         }catch (Exception $error){
             $this->logger->error($error->getMessage());
         }
@@ -69,28 +73,29 @@ class GoogleClient
     }
 
     /**
-     * @param Google_Client $client
-     * @return mixed
+     * @param $service
+     * @return false|mixed
      */
-    public function updateSpreadSheet(Google_Client $client)
+    public function updateSpreadSheet($service)
     {
         $values = [
-            ['col 1', 'col 2', 'col 3'],
-            ['col 1', 'col 2']
+            ['col 1', 'col 2', 'col 3', 'col 4'],
+            ['col 1', 'col 2', 'col 2']
         ];
 
-        $body = new Google_Service_Sheets_ValueRange([
-            "values" => $values
-        ]);
-
-        $params = [
-            'valueInputOption' => 'RAW'
-        ];
         try {
-            $updateSheet = $service->spreadsheets_values->update($spreadsheetId, 'Export!A2:Z', $body, $params);
+            return $service->spreadsheets_values->update(
+                $this->generalHelper->getSpreadSheetId(),
+                $this->generalHelper->getExportSheetName().'!A2:Z',
+                new Google_Service_Sheets_ValueRange([
+                    'values' => $values
+                ]),
+                ['valueInputOption' => 'RAW']
+            );
         }catch (Exception $error){
             $this->logger->error($error->getMessage());
         }
-        return $updateSheet;
+
+        return false;
     }
 }

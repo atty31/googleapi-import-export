@@ -31,11 +31,14 @@ class Exports
         $this->googleClient = $googleClient;
     }
 
+    /**
+     * @throws \Google\Exception
+     */
     public function execute()
     {
         if (!$this->generalHelper->enableModule()){
             return;
         }
-        $response = $this->googleClient->getGoogleClient();
+        $this->googleClient->updateSpreadSheet($this->googleClient->getGoogleClient());
     }
 }
