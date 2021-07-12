@@ -1,6 +1,6 @@
 {
     "name": "atma/module-products",
-    "description": "",
+    "description": "Import/Export product related data to/from google cloud",
     "type": "magento2-module",
     "license": "proprietary",
     "authors": [
@@ -10,7 +10,10 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "prefer-stable": true,
+    "require": {
+        "google/apiclient":"^2.10"
+    },
     "autoload": {
         "files": [
             "registration.php"
