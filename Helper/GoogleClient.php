@@ -65,7 +65,7 @@ class GoogleClient
     public function readSpreadSheet($service)
     {
         try {
-            $response = $service->spreadsheets_values->get($this->generalHelper->getSpreadSheetId(), $this->generalHelper->getImportSheetName().'!A:Z');
+            $response = $service->spreadsheets_values->get($this->generalHelper->getSpreadSheetId(), $this->generalHelper->getImportSheetName().'!A2:Z');
         }catch (Exception $error){
             $this->logger->error($error->getMessage());
         }
