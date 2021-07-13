@@ -76,13 +76,8 @@ class GoogleClient
      * @param $service
      * @return false|mixed
      */
-    public function updateSpreadSheet($service)
+    public function updateSpreadSheet($service, $values)
     {
-        $values = [
-            ['col 1', 'col 2', 'col 3', 'col 4'],
-            ['col 1', 'col 2', 'col 2']
-        ];
-
         try {
             return $service->spreadsheets_values->update(
                 $this->generalHelper->getSpreadSheetId(),
